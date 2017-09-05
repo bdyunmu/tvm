@@ -88,9 +88,11 @@ if "bdist_wheel" in sys.argv:
         "include_package_data": False
     }
 else:
+    curr_path = os.path.dirname(os.path.abspath(os.path.expanduser(__file__)))
+    rpath = os.path.relpath(LIB_PATH[0], curr_path)
     setup_kwargs = {
-        "include_package_data": False,
-        "data_files": [('tvm', [LIB_PATH[0]])]
+        "include_package_data": True,
+        "data_files": [('tvm', [rpath])]
     }
 
 setup(name='tvm',
